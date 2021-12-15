@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Touite;
 
 class TouitesController extends AbstractController
 {
@@ -13,6 +14,7 @@ class TouitesController extends AbstractController
      **/
     public function index()
     {
+        $repo = $this->getDoctrine()->getRepository(Touite::class);
         return $this->render('touites/index.html.twig', [
             'controller_name' => 'TouitesController',
         ]);
