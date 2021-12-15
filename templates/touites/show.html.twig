@@ -15,4 +15,19 @@
 			{{ touite.createdAt | date('H:i') }}
 			par User</div>
 	</article>
-{% endblock %}
+
+	<section id="commentaires">
+		{% for comment in touite.comments %}
+			<div class="comment">
+				<div class="row">
+					<div class="col-3">
+						{{ comment.author }}
+						(<small{{comment.createdAt|date('d/m/YàH:i')}}>)
+						</div>
+						<div class="col">
+							{{ comment.content | raw }}
+						</div>
+					</div>
+				</div>
+			</section>
+		{% endblock %}

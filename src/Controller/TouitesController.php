@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Touite;
+use App\Form\TouiteFormType;
 use App\Repository\TouiteRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
@@ -40,19 +41,22 @@ class TouitesController extends AbstractController
 
     /**
      * @Route("/touites/new", name="touites_create")
+     * @Route("/touites/{id}/edit", name="touites_edit")
      */
-    public function create(Request $request, ManagerRegistry $manager)
+    public function form(Touite $touite = null, Request $request, ManagerRegistry $manager)
     {
-        $touite = new Touite();
+        if (!$touite) {
+            $touite = new Touite();
+        }
 
-        $form = $this->createFormBuilder($touite)
-            ->add('content')
-            ->getForm();
+        $form = $this->createForm(TouiteFormType::class, $touite);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $touite->setCreatedAt(new \DateTime());
+            if (!$touite->getId()) {
+                $touite->setCreatedAt(new \DateTime());
+            }
 
             $manager->getManager()->persist($touite);
             $manager->getManager()->flush();
@@ -61,6 +65,11 @@ class TouitesController extends AbstractController
                 'id' => $touite->getId()
             ]);
         }
+
+        return $this->render('touites/create.html.twig', [
+            'formTouite' => $form->createView(),
+            'editMode' => $touite->getId() !== null
+        ]);
     }
 
 

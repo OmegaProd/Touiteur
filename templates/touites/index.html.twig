@@ -7,6 +7,9 @@
 	<section class="touites">
 		{% for touites in touites %}
 			<article>
+				<div class="user-touite">
+					<h2>User</h2>
+				</div>
 				<div class="content">
 					{{ touites.content | raw }}
 					<a href="{{ path('touites_show', {'id' : touites.id}) }}" class="btn btn-primary">Lire la suite</a>

@@ -10,7 +10,13 @@
 
 	{{ form_row(formTouite.content, {'attr': {'placeholder': "Contenu du Touite"}}) }}
 
-	<button type="submit" class"btn btn-succes">Poster</button>
+	<button type="submit" class"btn btn-succes">
+		{% if editMode %}
+			Enregistrer les modifications
+		{% else %}
+			Poster
+		{% endif %}
+	</button>
 
 	{{ form_end(formTouite) }}
 
