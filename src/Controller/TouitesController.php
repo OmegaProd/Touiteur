@@ -15,8 +15,12 @@ class TouitesController extends AbstractController
     public function index()
     {
         $repo = $this->getDoctrine()->getRepository(Touite::class);
+
+        $touites = $repo->findAll();
+
         return $this->render('touites/index.html.twig', [
             'controller_name' => 'TouitesController',
+            'touites' => $touites
         ]);
     }
 

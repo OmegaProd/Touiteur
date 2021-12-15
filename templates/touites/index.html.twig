@@ -5,39 +5,17 @@
 
 {% block body %}
 	<section class="touites">
-
-		<article>
-			<h2>Touite</h2>
-			<div class="metadata">Ecrit le 10/05/2018 à 19:00 dans la catégorie Politique</div>
-			<div class="content">
-				<img src="http://placehold.it/350*150" alt="">
-				<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae corporis quis ad reprehenderit! Dolorem, voluptatibus!</p>
-				<p>Vel, cum natus quis incidunt reiciendis assumenda quod rerum recusandae ab sint sunt. Quis, molestias!</p>
-				<a href="{{ path('touites_show') }}" class="btn btn-primary">Lire la suite</a>
-			</div>
-		</article>
-
-		<article>
-			<h2>Touite</h2>
-			<div class="metadata">Ecrit le 10/05/2018 à 19:00 dans la catégorie Politique</div>
-			<div class="content">
-				<img src="http://placehold.it/350*150" alt="">
-				<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae corporis quis ad reprehenderit! Dolorem, voluptatibus!</p>
-				<p>Vel, cum natus quis incidunt reiciendis assumenda quod rerum recusandae ab sint sunt. Quis, molestias!</p>
-				<a href="{{ path('touites_show') }}" class="btn btn-primary">Lire la suite</a>
-			</div>
-		</article>
-
-		<article>
-			<h2>Touite</h2>
-			<div class="metadata">Ecrit le 10/05/2018 à 19:00 dans la catégorie Politique</div>
-			<div class="content">
-				<img src="http://placehold.it/350*150" alt="">
-				<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae corporis quis ad reprehenderit! Dolorem, voluptatibus!</p>
-				<p>Vel, cum natus quis incidunt reiciendis assumenda quod rerum recusandae ab sint sunt. Quis, molestias!</p>
-				<a href="{{ path('touites_show') }}" class="btn btn-primary">Lire la suite</a>
-			</div>
-		</article>
-
+		{% for touites in touites %}
+			<article>
+				<h2>Touite</h2>
+				<div class="metadata">Ecrit le 10/05/2018 à 19:00 dans la catégorie Politique</div>
+				<div class="content">
+					<img src="http://placehold.it/350*150" alt="">
+					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae corporis quis ad reprehenderit! Dolorem, voluptatibus!</p>
+					<p>Vel, cum natus quis incidunt reiciendis assumenda quod rerum recusandae ab sint sunt. Quis, molestias!</p>
+					<a href="{{ path('touites_show') }}" class="btn btn-primary">Lire la suite</a>
+				</div>
+			</article>
+		{% endfor %}
 	</section>
 {% endblock %}
