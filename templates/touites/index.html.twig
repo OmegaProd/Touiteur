@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello!
+{% block title %}Touites
 {% endblock %}
 
 {% block body %}
@@ -12,8 +12,8 @@
 				</div>
 				<div class="content">
 					{{ touites.content | raw }}
-					<a href="{{ path('touites_show', {'id' : touites.id}) }}" class="btn btn-primary">Lire la suite</a>
 				</div>
+				<a href="{{ path('touites_show', {'id' : touites.id}) }}" class="btn btn-primary">Voir plus</a>
 				<div class="metadata">Poster le
 					{{ touites.createdAt | date('d/m/Y') }}
 					à

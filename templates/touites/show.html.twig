@@ -1,33 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello
+{% block title %}Touite
+	{{ touite.id }}
 {% endblock %}
 
 {% block body %}
+
 	<article>
 		<div class="content">
 			{{ touite.content | raw }}
-			<a href="{{ path('touites') }}" class="btn btn-primary">Retour aux Touites</a>
 		</div>
+		<a href="{{ path('touites') }}" class="btn btn-primary">Retour aux Touites</a>
 		<div class="metadata">Poster le
 			{{ touite.createdAt | date('d/m/Y') }}
 			à
 			{{ touite.createdAt | date('H:i') }}
-			par User</div>
+			par User
+		</div>
 	</article>
-
-	<section id="commentaires">
-		{% for comment in touite.comments %}
-			<div class="comment">
-				<div class="row">
-					<div class="col-3">
-						{{ comment.author }}
-						(<small{{comment.createdAt|date('d/m/YàH:i')}}>)
-						</div>
-						<div class="col">
-							{{ comment.content | raw }}
+	{#
+			<section id="commentaires">
+				{% for comment in touite.comments %}
+					<div class="comment">
+						<div class="row">
+							<div class="col-3">
+								{{ comment.author }}
+							</div>
+							<div class="col">
+								{{ comment.content | raw }}
+								<div class="metadata">Poster le
+									{{ touite.createdAt | date('d/m/Y') }}
+									à
+									{{ touite.createdAt | date('H:i') }}
+									par User
+								</div>
+							</div>
 						</div>
 					</div>
-				</div>
+				{% endfor %}
 			</section>
-		{% endblock %}
+		#}
+{% endblock %}

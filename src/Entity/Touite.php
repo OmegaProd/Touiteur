@@ -37,7 +37,7 @@ class Touite
     private $categories;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="article", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="touite", orphanRemoval=true)
      */
     private $comments;
 

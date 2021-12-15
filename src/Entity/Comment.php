@@ -81,7 +81,7 @@ class Comment
 
     public function getTouite(): ?Touite
     {
-        return $this->article;
+        return $this->touite;
     }
 
     public function setTouite(?Touite $touite): self

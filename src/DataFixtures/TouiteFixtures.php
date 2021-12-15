@@ -4,12 +4,14 @@ namespace App\DataFixtures;
 
 use App\Entity\Comment;
 use App\Entity\Category;
-use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use App\Entity\Touite;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Faker;
 
-class TouiteFixtures //extends Fixture
+
+
+class TouiteFixtures extends AbstractFixture
 {
 
     public function load(ObjectManager $manager)

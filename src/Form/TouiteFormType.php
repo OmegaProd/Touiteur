@@ -13,12 +13,7 @@ class TouiteFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->add('content');
-        //->add('categories', EntityType::class, [
-        //    'class' => Category::class,
-        //    'choice_label' => 'title'
-        //:]);
+        $builder->add('content');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
