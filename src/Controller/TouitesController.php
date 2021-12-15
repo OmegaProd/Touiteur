@@ -6,16 +6,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Touite;
+use App\Repository\TouiteRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class TouitesController extends AbstractController
 {
     /**
      * @Route("/touites", name="touites")
      **/
-    public function index()
+    public function index(TouiteRepository $repo)
     {
-        $repo = $this->getDoctrine()->getRepository(Touite::class);
-
         $touites = $repo->findAll();
 
         return $this->render('touites/index.html.twig', [
@@ -36,10 +39,38 @@ class TouitesController extends AbstractController
     }
 
     /**
-     * @Route("/touites/12", name="touites_show")
+     * @Route("/touites/new", name="touites_create")
      */
-    public function show()
+    public function create(Request $request, ManagerRegistry $manager)
     {
-        return $this->render('touites/show.html.twig');
+        $touite = new Touite();
+
+        $form = $this->createFormBuilder($touite)
+            ->add('content')
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $touite->setCreatedAt(new \DateTime());
+
+            $manager->getManager()->persist($touite);
+            $manager->getManager()->flush();
+
+            return $this->redirectToRoute('touites_show', [
+                'id' => $touite->getId()
+            ]);
+        }
+    }
+
+
+    /**
+     * @Route("/touites/{id}", name="touites_show")
+     */
+    public function show(Touite $touite)
+    {
+        return $this->render('touites/show.html.twig', [
+            'touite' => $touite
+        ]);
     }
 }

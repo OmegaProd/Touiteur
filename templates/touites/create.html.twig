@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme formTouite 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+	<h1>Poster un touite</h1>
+
+	{{ form_start(formTouite) }}
+
+	{{ form_row(formTouite.content, {'attr': {'placeholder': "Contenu du Touite"}}) }}
+
+	<button type="submit" class"btn btn-succes">Poster</button>
+
+	{{ form_end(formTouite) }}
+
+{% endblock %}
