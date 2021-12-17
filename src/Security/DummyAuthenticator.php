@@ -20,16 +20,19 @@ class DummyAuthenticator extends AbstractAuthenticator implements Authentication
     public function authenticate(Request $request): PassportInterface
     {
         // TODO: Implement authenticate() method.
+        dd('DummyAuthenticator::authenticate()!');
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         // TODO: Implement onAuthenticationSuccess() method.
+        dd('DummyAuthenticator::onAuthenticationSuccess()!');
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
         // TODO: Implement onAuthenticationFailure() method.
+        dd('DummyAuthenticator::onAuthenticationFailure()!');
     }
 
     public function start(Request $request, AuthenticationException $authException = null): Response
