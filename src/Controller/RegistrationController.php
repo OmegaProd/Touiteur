@@ -13,13 +13,13 @@ class RegistrationController extends AbstractController
     public function index(UserPasswordHasherInterface $passwordHasher)
     {
         // ... e.g. get the user data from a registration form
-        $user = new User();
-        //$plaintextPassword = ;
+        $user = new User('username');
+        $plaintextPassword = 'password';
 
         // hash the password (based on the security.yaml config for the $user class)
         $hashedPassword = $passwordHasher->hashPassword(
             $user,
-            //$plaintextPassword
+            $plaintextPassword
         );
         $user->setPassword($hashedPassword);
 
